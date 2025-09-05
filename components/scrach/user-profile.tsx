@@ -1,7 +1,6 @@
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -14,8 +13,6 @@ import {
   Calendar,
   CreditCard,
   CheckCircle,
-    Clock,
-    Edit,
 } from "lucide-react";
 
 export function UserProfile() {
@@ -58,6 +55,8 @@ export function UserProfile() {
 
     return Math.max(0, Math.min(100, (remainingDays / totalDays) * 100));
   };
+
+
 
   return (
     <div className="max-w-md mx-auto p-4 space-y-6">
