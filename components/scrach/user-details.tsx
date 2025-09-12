@@ -44,7 +44,7 @@ export default function UserDetails() {
                 {userProfile.photo ? (
                   <img
                     src={userProfile.photo || "/placeholder.svg"}
-                    alt="Profile"
+                    alt="Profile" 
                     className="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover"
                   />
                 ) : (
@@ -58,6 +58,7 @@ export default function UserDetails() {
               </div>
             </div>
           </div>
+        
 
           {/* Profile Information */}
           <CardContent className="px-6 py-6 -mt-8 relative z-10">
