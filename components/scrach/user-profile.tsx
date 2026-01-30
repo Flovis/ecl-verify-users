@@ -15,7 +15,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 
-export function UserProfile() {
+export function UserProfile({ matricule }: { matricule: string }) {
   // Sample user data with French/African naming conventions
   const userData = {
     nom: "Kabanda",
@@ -56,8 +56,6 @@ export function UserProfile() {
     return Math.max(0, Math.min(100, (remainingDays / totalDays) * 100));
   };
 
-
-
   return (
     <div className="max-w-md mx-auto p-4 space-y-6">
       {/* Header */}
@@ -65,6 +63,11 @@ export function UserProfile() {
         <h1 className="text-xl font-semibold text-foreground">
           Profil de l'agent
         </h1>
+        {/* informe is current developpement and will be change in future */}
+        <p className="text-sm text-muted-foreground">
+          * Attention: Cette application est actuellement en développement.
+          Certaines informations peuvent être incomplètes.
+        </p>
       </div>
 
       {/* Profile Photo Section */}
@@ -73,14 +76,11 @@ export function UserProfile() {
           <div className="flex flex-col items-center space-y-4">
             <div className="relative">
               <Avatar className="h-24 w-24 border-2 border-border">
-                <AvatarImage
-                  src={userData.photoUrl || "/placeholder.svg"}
-                  alt="Photo de profil"
-                />
-                <AvatarFallback className="text-lg font-medium bg-muted">
+                <AvatarImage src={"/placeholder.svg"} alt="Photo de profil" />
+                {/* <AvatarFallback className="text-lg font-medium bg-muted">
                   {userData.prenom[0]}
                   {userData.nom[0]}
-                </AvatarFallback>
+                </AvatarFallback> */}
               </Avatar>
               {/* <Button size="sm" variant="secondary" className="absolute -bottom-1 -right-1 h-8 w-8 rounded-full p-0">
                 <Edit className="h-4 w-4" />
@@ -88,10 +88,12 @@ export function UserProfile() {
             </div>
             <div className="text-center">
               <h2 className="text-lg font-semibold text-foreground">
-                {userData.prenom} {userData.postnom} {userData.nom}
+                {/* {userData.prenom} {userData.postnom} {userData.nom} */}
+                Matricule: {matricule}
               </h2>
               <p className="text-sm text-muted-foreground">
-                {userData.fonction}
+                {/* {userData.fonction} */}
+                Fonction
               </p>
               <div className="flex items-center text-center justify-center">
                 <Badge className={getStatusColor(userData.statusCarte)}>
@@ -121,7 +123,7 @@ export function UserProfile() {
             <div className="flex-1">
               <p className="text-sm text-muted-foreground">Nom complet</p>
               <p className="text-sm font-medium">
-                {userData.nom} {userData.postnom} {userData.prenom}
+                {/* {userData.nom} {userData.postnom} {userData.prenom} */}
               </p>
             </div>
           </div>
@@ -130,9 +132,7 @@ export function UserProfile() {
             <CreditCard className="h-4 w-4 text-muted-foreground" />
             <div className="flex-1">
               <p className="text-sm text-muted-foreground">Matricule</p>
-              <p className="text-sm font-medium font-mono">
-                {userData.matricule}
-              </p>
+              <p className="text-sm font-medium font-mono">{matricule}</p>
             </div>
           </div>
 
@@ -140,7 +140,7 @@ export function UserProfile() {
             <Mail className="h-4 w-4 text-muted-foreground" />
             <div className="flex-1">
               <p className="text-sm text-muted-foreground">E-mail</p>
-              <p className="text-sm font-medium">{userData.email}</p>
+              {/* <p className="text-sm font-medium">{userData.email}</p> */}
             </div>
           </div>
 
@@ -148,17 +148,17 @@ export function UserProfile() {
             <Phone className="h-4 w-4 text-muted-foreground" />
             <div className="flex-1">
               <p className="text-sm text-muted-foreground">Téléphone</p>
-              <p className="text-sm font-medium">{userData.telephone}</p>
-            </div>  
+              {/* <p className="text-sm font-medium">{userData.telephone}</p> */}
+            </div>
           </div>
 
           <div className="flex items-center space-x-3">
             <MapPin className="h-4 w-4 text-muted-foreground" />
             <div className="flex-1">
               <p className="text-sm text-muted-foreground">Adresse</p>
-              <p className="text-sm font-medium text-balance">
+              {/* <p className="text-sm font-medium text-balance">
                 {userData.adresse}
-              </p>
+              </p> */}
             </div>
           </div>
         </CardContent>
@@ -176,7 +176,7 @@ export function UserProfile() {
             <Briefcase className="h-4 w-4 text-muted-foreground" />
             <div className="flex-1">
               <p className="text-sm text-muted-foreground">Fonction</p>
-              <p className="text-sm font-medium">{userData.fonction}</p>
+              {/* <p className="text-sm font-medium">{userData.fonction}</p> */}
             </div>
           </div>
 
@@ -184,7 +184,7 @@ export function UserProfile() {
             <User className="h-4 w-4 text-muted-foreground" />
             <div className="flex-1">
               <p className="text-sm text-muted-foreground">État civil</p>
-              <p className="text-sm font-medium">{userData.etatCivil}</p>
+              {/* <p className="text-sm font-medium">{userData.etatCivil}</p> */}
             </div>
           </div>
         </CardContent>

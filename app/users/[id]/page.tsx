@@ -10,9 +10,9 @@ export default async function BlogPostPage({
 
   return (
     <div>
-      <h1 className="font-bold">URL matricule: {id}</h1>
+      {/* <h1 className="font-bold">URL matricule: {id}</h1> */}
       {/* <UserDetails /> */}
-      <UserProfile/>
+      <UserProfile matricule={id}/>
     </div>
   );
 }
