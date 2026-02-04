@@ -21,19 +21,6 @@ async function main() {
     if (!row.matricule) continue;
 
     console.log("row", row);
-    // await prisma.user.create({
-    //   data: {
-    //     matricule: String(row.matricule).trim(),
-    //     nom: String(row.nom).trim(),
-    //     postnom: String(row.postnom).trim(),
-    //     prenom: String(row.prenom).trim(),
-    //     fonction: String(row.fonction).trim(),
-    //     status:
-    //       String(row.status).trim() === "Inactif"
-    //         ? UserStatus.Inactif
-    //         : UserStatus.Actif,
-    //   },
-    // });
 
     await prisma.user.upsert({
       where: { matricule: String(row.matricule).trim() },
