@@ -2,6 +2,7 @@
 import { getUserById } from "@/actions";
 import { UserProfile } from "@/components/scrach/user-profile";
 import { Card, CardContent } from "@/components/ui/card";
+import { UserStatus } from "@/lib/utils";
 import { GoAlert } from "react-icons/go";
 
 export default async function BlogPostPage({
@@ -14,10 +15,6 @@ export default async function BlogPostPage({
 
   console.log("-----------------", user);
 
-  enum UserStatus {
-    Actif = "Actif",
-    Inactif = "Inactif",
-  }
 
   return (
     <div className="max-w-md mx-auto p-4 space-y-6">

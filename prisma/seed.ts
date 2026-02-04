@@ -1,8 +1,8 @@
-import { UserStatus } from "@/app/generated/prisma/enums";
 import path from "path";
 import * as XLSX from "xlsx";
 import prisma from "@/lib/prisma";
 import "dotenv/config";
+import { UserStatus } from "@/lib/utils";
 
 async function main() {
   const filePath = path.join(__dirname, "users.xlsx");
