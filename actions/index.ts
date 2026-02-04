@@ -2,11 +2,15 @@
 
 import prisma from "@/lib/prisma";
 
-const getUserById = async (employeeId: string) => {
+export const getUserById = async (matricule: string) => {
   try {
-    const user = prisma.user.findUnique({
-      where: { employeeId },
+    const user = await prisma.user.findUnique({
+      where: { matricule },
     });
-    return user;
-  } catch (error) {}
+    console.log("--------server---------", user);
+    return { data: user };
+  } catch (error) {
+    console.log(error);
+    return { error: "Erreur lors de la récupération de l'utilisateur" };
+  }
 };

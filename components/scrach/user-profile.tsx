@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -15,7 +15,20 @@ import {
   CheckCircle,
 } from "lucide-react";
 
-export function UserProfile({ matricule }: { matricule: string }) {
+type User = {
+  id: number;
+  nom: string;
+  postnom: string;
+  prenom: string;
+  matricule: string;
+  fonction: string;
+  etatCivil?: string | null;
+  email?: string | null;
+  telephone?: string | null;
+  adresse?: string | null;
+};
+
+export function UserProfile({ user }: { user: User }) {
   // Sample user data with French/African naming conventions
   const userData = {
     nom: "Kabanda",
@@ -57,19 +70,7 @@ export function UserProfile({ matricule }: { matricule: string }) {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4 space-y-6">
-      {/* Header */}
-      <div className="text-center py-4">
-        <h1 className="text-xl font-semibold text-foreground">
-          Profil de l'agent
-        </h1>
-        {/* informe is current developpement and will be change in future */}
-        <p className="text-sm text-muted-foreground">
-          * Attention: Cette application est actuellement en développement.
-          Certaines informations peuvent être incomplètes.
-        </p>
-      </div>
-
+    <>
       {/* Profile Photo Section */}
       <Card className="border-border shadow-sm">
         <CardContent className="pt-6 pb-4">
@@ -78,8 +79,8 @@ export function UserProfile({ matricule }: { matricule: string }) {
               <Avatar className="h-24 w-24 border-2 border-border">
                 <AvatarImage src={"/placeholder.svg"} alt="Photo de profil" />
                 {/* <AvatarFallback className="text-lg font-medium bg-muted">
-                  {userData.prenom[0]}
-                  {userData.nom[0]}
+                  {user.prenom}
+                  {user.nom}
                 </AvatarFallback> */}
               </Avatar>
               {/* <Button size="sm" variant="secondary" className="absolute -bottom-1 -right-1 h-8 w-8 rounded-full p-0">
@@ -89,12 +90,10 @@ export function UserProfile({ matricule }: { matricule: string }) {
             <div className="text-center">
               <h2 className="text-lg font-semibold text-foreground">
                 {/* {userData.prenom} {userData.postnom} {userData.nom} */}
-                Matricule: {matricule}
+                {user.nom} {user.postnom} {user.prenom}
+                {/* Matricule: {user.matricule} */}
               </h2>
-              <p className="text-sm text-muted-foreground">
-                {/* {userData.fonction} */}
-                Fonction
-              </p>
+              <p className="text-sm text-muted-foreground">{user.fonction}</p>
               <div className="flex items-center text-center justify-center">
                 <Badge className={getStatusColor(userData.statusCarte)}>
                   {userData.statusCarte}
@@ -123,7 +122,7 @@ export function UserProfile({ matricule }: { matricule: string }) {
             <div className="flex-1">
               <p className="text-sm text-muted-foreground">Nom complet</p>
               <p className="text-sm font-medium">
-                {/* {userData.nom} {userData.postnom} {userData.prenom} */}
+                {user.nom} {user.postnom} {user.prenom}
               </p>
             </div>
           </div>
@@ -132,7 +131,7 @@ export function UserProfile({ matricule }: { matricule: string }) {
             <CreditCard className="h-4 w-4 text-muted-foreground" />
             <div className="flex-1">
               <p className="text-sm text-muted-foreground">Matricule</p>
-              <p className="text-sm font-medium font-mono">{matricule}</p>
+              <p className="text-sm font-medium font-mono">{user.matricule}</p>
             </div>
           </div>
 
@@ -140,7 +139,7 @@ export function UserProfile({ matricule }: { matricule: string }) {
             <Mail className="h-4 w-4 text-muted-foreground" />
             <div className="flex-1">
               <p className="text-sm text-muted-foreground">E-mail</p>
-              {/* <p className="text-sm font-medium">{userData.email}</p> */}
+              <p className="text-sm font-medium">{user.email ?? "-"}</p>
             </div>
           </div>
 
@@ -148,7 +147,7 @@ export function UserProfile({ matricule }: { matricule: string }) {
             <Phone className="h-4 w-4 text-muted-foreground" />
             <div className="flex-1">
               <p className="text-sm text-muted-foreground">Téléphone</p>
-              {/* <p className="text-sm font-medium">{userData.telephone}</p> */}
+              <p className="text-sm font-medium">{user.telephone ?? "-"}</p>
             </div>
           </div>
 
@@ -156,9 +155,9 @@ export function UserProfile({ matricule }: { matricule: string }) {
             <MapPin className="h-4 w-4 text-muted-foreground" />
             <div className="flex-1">
               <p className="text-sm text-muted-foreground">Adresse</p>
-              {/* <p className="text-sm font-medium text-balance">
-                {userData.adresse}
-              </p> */}
+              <p className="text-sm font-medium text-balance">
+                {user.adresse ?? "-"}
+              </p>
             </div>
           </div>
         </CardContent>
@@ -176,7 +175,7 @@ export function UserProfile({ matricule }: { matricule: string }) {
             <Briefcase className="h-4 w-4 text-muted-foreground" />
             <div className="flex-1">
               <p className="text-sm text-muted-foreground">Fonction</p>
-              {/* <p className="text-sm font-medium">{userData.fonction}</p> */}
+              <p className="text-sm font-medium">{user.fonction ?? "-"}</p>
             </div>
           </div>
 
@@ -184,7 +183,7 @@ export function UserProfile({ matricule }: { matricule: string }) {
             <User className="h-4 w-4 text-muted-foreground" />
             <div className="flex-1">
               <p className="text-sm text-muted-foreground">État civil</p>
-              {/* <p className="text-sm font-medium">{userData.etatCivil}</p> */}
+              <p className="text-sm font-medium">{user.etatCivil ?? "-"}</p>
             </div>
           </div>
         </CardContent>
@@ -275,6 +274,6 @@ export function UserProfile({ matricule }: { matricule: string }) {
           <span className="text-xs">Profil</span>
         </Button>
       </div> */}
-    </div>
+    </>
   );
 }
