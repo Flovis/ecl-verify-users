@@ -1,6 +1,5 @@
 // import UserDetails from "@/components/scrach/user-details";
 import { getUserById } from "@/actions";
-import { UserStatus } from "@/app/generated/prisma/enums";
 import { UserProfile } from "@/components/scrach/user-profile";
 import { Card, CardContent } from "@/components/ui/card";
 import { GoAlert } from "react-icons/go";
@@ -14,6 +13,11 @@ export default async function BlogPostPage({
   const user = await getUserById(id);
 
   console.log("-----------------", user);
+
+  enum UserStatus {
+    Actif = "Actif",
+    Inactif = "Inactif",
+  }
 
   return (
     <div className="max-w-md mx-auto p-4 space-y-6">
