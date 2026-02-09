@@ -23,14 +23,14 @@ async function main() {
     console.log("row", row);
 
     await prisma.user.upsert({
-      where: { matricule: String(row.matricule).trim() },
+      where: { matricule: String(row.matricule).trim().toLocaleUpperCase() },
       update: {},
       create: {
-        matricule: String(row.matricule).trim(),
-        nom: String(row.nom).trim(),
-        postnom: String(row.postnom).trim(),
-        prenom: String(row.prenom).trim(),
-        fonction: String(row.fonction).trim(),
+        matricule: String(row.matricule).trim().toLocaleUpperCase(),
+        nom: String(row.nom).trim().toLocaleUpperCase(),
+        postnom: String(row.postnom).trim().toLocaleUpperCase(),
+        prenom: String(row.prenom).trim().toLocaleUpperCase(),
+        fonction: String(row.fonction).trim().toLocaleUpperCase(),
         status:
           String(row.status).trim() === "Inactif"
             ? UserStatus.Inactif

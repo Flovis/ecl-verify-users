@@ -4,8 +4,12 @@ import prisma from "@/lib/prisma";
 
 export const getUserById = async (matricule: string) => {
   try {
-    const user = await prisma.user.findUnique({
-      where: { matricule },
+    const cleanMatricule = matricule.trim().toUpperCase().replace(/\s+/g, "");
+
+    const user = await prisma.user.findFirst({
+      where: {
+        matricule: cleanMatricule,
+      },
     });
     console.log("--------server---------", user);
     return { data: user };

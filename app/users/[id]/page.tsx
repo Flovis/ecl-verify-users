@@ -11,10 +11,10 @@ export default async function BlogPostPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const user = await getUserById(id);
+  console.log(id.trim().toLocaleUpperCase());
+  const user = await getUserById(id.trim().toLocaleUpperCase());
 
   console.log("-----------------", user);
-
 
   return (
     <div className="max-w-md mx-auto p-4 space-y-6">
